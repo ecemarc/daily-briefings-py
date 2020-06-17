@@ -9,21 +9,27 @@ load_dotenv()
 
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 MY_EMAIL = os.environ.get("MY_EMAIL_ADDRESS")
+print(SENDGRID_API_KEY)
+
 
 def send_email(subject="[Daily Briefing] This is a test", html="<p>Hello World</p>"):
-    client = SendGridAPIClient(SENDGRID_API_KEY) #> <class 'sendgrid.sendgrid.SendGridAPIClient>
+    # > <class 'sendgrid.sendgrid.SendGridAPIClient>
+    client = SendGridAPIClient(SENDGRID_API_KEY)
     print("CLIENT:", type(client))
     print("SUBJECT:", subject)
     #print("HTML:", html)
-    message = Mail(from_email=MY_EMAIL, to_emails=MY_EMAIL, subject=subject, html_content=html)
+    message = Mail(from_email=MY_EMAIL, to_emails=MY_EMAIL,
+                   subject=subject, html_content=html)
     try:
         response = client.send(message)
-        print("RESPONSE:", type(response)) #> <class 'python_http_client.client.Response'>
-        print(response.status_code) #> 202 indicates SUCCESS
+        # > <class 'python_http_client.client.Response'>
+        print("RESPONSE:", type(response))
+        print(response.status_code)  # > 202 indicates SUCCESS
         return response
     except Exception as e:
         print("OOPS", e.message)
         return None
+
 
 if __name__ == "__main__":
     example_subject = "[Daily Briefing] This is a test"
