@@ -30,6 +30,8 @@ def send_email(subject="[Daily Briefing] This is a test", html="<p>Hello World</
         print("OOPS", e.message)
         return None
 
+# if .env working?
+
 
 if __name__ == "__main__":
     example_subject = "[Daily Briefing] This is a test"
